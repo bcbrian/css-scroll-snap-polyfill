@@ -139,8 +139,8 @@ function parseScrollSnapAlignment (declaration) {
   }
 
   return {
-    x: xAlign,
-    y: yAlign
+    y: xAlign,
+    x: yAlign
   }
 }
 
@@ -362,18 +362,18 @@ function getNextElementSnapPoint (scrollObj, obj, direction) {
   }
 
   // handle use-case where scrolling to end
-  if ((left > 0 && (left + getWidth(scrollObj)) === getScrollWidth(scrollObj)) || (top > 0 && (top + getHeight(scrollObj)) === getScrollHeight(scrollObj))) {
-    currentIteration = l - 1
-    const lastSnapElement = obj.snapElements[currentIteration]
-    const lastSnapCoords = {
-      x: (getLeft(lastSnapElement) - getLeft(scrollObj)) + getXSnapLength(lastSnapElement, lastSnapElement.scrollSnapAlignment.x, direction),
-      y: (getTop(lastSnapElement) - getTop(scrollObj)) + getYSnapLength(lastSnapElement, lastSnapElement.scrollSnapAlignment.y, direction)
-    }
-    lastSnapElement.snapCoords = lastSnapCoords
-    // the for loop stopped at the last element
-    return {y: stayInBounds(0, getScrollHeight(scrollObj), lastSnapCoords.y),
-      x: stayInBounds(0, getScrollWidth(scrollObj), lastSnapCoords.x)}
-  }
+  // if ((left > 0 && (left + getWidth(scrollObj)) === getScrollWidth(scrollObj)) || (top > 0 && (top + getHeight(scrollObj)) === getScrollHeight(scrollObj))) {
+  //   currentIteration = l - 1
+  //   const lastSnapElement = obj.snapElements[currentIteration]
+  //   const lastSnapCoords = {
+  //     x: (getLeft(lastSnapElement) - getLeft(scrollObj)) + getXSnapLength(lastSnapElement, lastSnapElement.scrollSnapAlignment.x, direction),
+  //     y: (getTop(lastSnapElement) - getTop(scrollObj)) + getYSnapLength(lastSnapElement, lastSnapElement.scrollSnapAlignment.y, direction)
+  //   }
+  //   lastSnapElement.snapCoords = lastSnapCoords
+  //   // the for loop stopped at the last element
+  //   return {y: stayInBounds(0, getScrollHeight(scrollObj), lastSnapCoords.y),
+  //     x: stayInBounds(0, getScrollWidth(scrollObj), lastSnapCoords.x)}
+  // }
 
   const currentSnapElement = obj.snapElements[currentIteration]
   const currentSnapCoords = {
@@ -673,12 +673,12 @@ export default () => {
   /**
    * Feature detect scroll-snap-type, if it exists then do nothing (return)
    */
-  if ('scrollSnapAlign' in document.documentElement.style ||
-      'webkitScrollSnapAlign' in document.documentElement.style ||
-      'msScrollSnapAlign' in document.documentElement.style) {
-    // just return void to stop executing the polyfill.
-    return
-  }
+  // if ('scrollSnapAlign' in document.documentElement.style ||
+  //     'webkitScrollSnapAlign' in document.documentElement.style ||
+  //     'msScrollSnapAlign' in document.documentElement.style) {
+  //   // just return void to stop executing the polyfill.
+  //   return
+  // }
 
   Polyfill({
     declarations: [
