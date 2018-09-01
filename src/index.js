@@ -384,8 +384,8 @@ function getNextElementSnapPoint (scrollObj, obj, direction) {
   const xThreshold = currentSnapCoords.x + (direction.x * getWidth(currentSnapElement) * CONSTRAINT)
   const yThreshold = currentSnapCoords.y + (direction.y * getHeight(currentSnapElement) * CONSTRAINT)
 
-  let i
-  for (i = currentIteration + primaryDirection; i < l && i >= 0; i = i + primaryDirection) {
+  let i = primaryDirection > 0 ? 0 : l
+  for (i = i + primaryDirection; i < l && i >= 0; i = i + primaryDirection) {
     currentIteratedObj = obj.snapElements[i]
 
     // get objects snap coords by adding obj.top + obj.snaplength.y
